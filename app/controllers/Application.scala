@@ -10,7 +10,6 @@ import play.api.libs.ws.{WSAuthScheme, WSClient, WSResponse}
 import play.api.mvc._
 import play.api.{Logger, Play}
 import play.mvc.Http
-
 import scala.util.Random
 
 class Application @Inject()(ws: WSClient) extends Controller {
