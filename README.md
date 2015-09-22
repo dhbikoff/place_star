@@ -8,6 +8,7 @@
 - Play Framework 2.4.3
 - Google Custom Search API
 - Bing Search API
+- [Scrimage](https://github.com/sksamuel/scrimage) - Scala image processing library
 
 #### Live Site:
 - Hosted on [Heroku](https://guarded-reaches-5004.herokuapp.com)
@@ -16,7 +17,7 @@
 
 #### Usage:
 - Uses rest routing parameters
-- request format `http://example.com/:searchProvider/:width/:height`
+- request format `http://example.com/:searchProvider/:search/:width/:height`
 - example: `http://example.com/google/corgi/400/600`
 - example: `http://example.com/bing/rottweiler/500/500`
 
