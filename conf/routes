@@ -1,6 +1,6 @@
-GET     /assets/*file                       controllers.Assets.versioned(path="/public", file: Asset)
+GET     /assets/*file                               controllers.Assets.versioned(path="/public", file: Asset)
 
-GET     /                                   controllers.Assets.at(path="/public", file="index.html")
-GET     /ping                               controllers.Application.ping
-GET     /google/:search/:width/:height      controllers.Application.google(search: String, width: Int, height: Int)
-GET     /bing/:search/:width/:height        controllers.Application.bing(search: String, width: Int, height: Int)
+GET     /                                           controllers.Assets.at(path="/public", file="index.html")
+GET     /ping                                       controllers.Application.ping
+GET     /:provider/:search/:width/:height           controllers.Application.search(provider: String, search: String, width: Int, height: Int, imgType = "jpg")
+GET     /:provider/:search/:width/:height/:imgType  controllers.Application.search(provider: String, search: String, width: Int, height: Int, imgType: String)

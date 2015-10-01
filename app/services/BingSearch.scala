@@ -4,20 +4,21 @@ import com.google.inject.Inject
 import play.api.Play.current
 import play.api.libs.ws.{WSAuthScheme, WSClient, WSResponse}
 import play.api.{Logger, Play}
+import types.{Image, SearchProvider}
 import utils.SearchErrorHandler
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.Random
 
-class BingSearch @Inject()(ws: WSClient) {
+class BingSearch @Inject()(ws: WSClient) extends SearchProvider {
   val bingUrl = Play.configuration.getString("bing.search.url").get
   val bingApiKey = Play.configuration.getString("bing.api.key").get
 
-  def get(search: String, width: Int, height: Int) = {
+  override def search(search: String, image: Image) = {
     val formattedSearch = search.replace("_", " ")
     searchBing(formattedSearch).map(res => processBingResults(res))
       .flatMap(value => fetchBingImage(value.toString()))
-      .map(res => ImageService.resize(res.bodyAsBytes, width, height))
+      .map(res => ImageService.resize(res.bodyAsBytes, image))
   }
 
   private def searchBing(search: String) = {

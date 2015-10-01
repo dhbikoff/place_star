@@ -5,20 +5,21 @@ import play.Logger
 import play.api.Play
 import play.api.Play.current
 import play.api.libs.ws.{WSClient, WSResponse}
+import types.{Image, SearchProvider}
 import utils.SearchErrorHandler
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.Random
 
-class GoogleSearch @Inject()(ws: WSClient) {
+class GoogleSearch @Inject()(ws: WSClient) extends SearchProvider {
   val googleUrl = Play.configuration.getString("google.search.url").get
   val googleApiKey = Play.configuration.getString("google.api.key").get
   val googleSearchKey = Play.configuration.getString("google.search.key").get
 
-  def get(search: String, width: Int, height: Int) = {
+  override def search(search: String, image: Image) = {
     searchGoogle(search).map(r => processGoogleResponse(r).get)
       .flatMap(imageUrl => fetchGoogleImage(imageUrl.toString()))
-      .map(imageResult => ImageService.resize(imageResult.bodyAsBytes, width, height))
+      .map(imageResult => ImageService.resize(imageResult.bodyAsBytes, image))
   }
 
   private def searchGoogle(search: String) = {

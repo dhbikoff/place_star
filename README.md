@@ -16,10 +16,15 @@
 - Rate limits are at the app level and not per user
 
 #### Usage:
-- Uses rest routing parameters
-- request format `http://example.com/:searchProvider/:search/:width/:height`
-- example: `http://example.com/google/corgi/400/600`
-- example: `http://example.com/bing/rottweiler/500/500`
+- uses rest routing parameters
+- uses underscores to separate search terms
+- supports png, jpg, jpeg extension parameters (defaults to jpg)
+- request format `http://localhost:9000/:searchProvider/:search/:width/:height/:ext(optional)`
+
+#### Examples:
+- `http://localhost:9000/google/corgi/400/600/png`
+- `http://localhost:9000/bing/rottweiler/500/500/jpg`
+- `http://localhost:9000/bing/corgi_rottweiler_mix/800/400`
 
 #### Notes:
 - Picks a random image from the search results so you can refresh for a different image
