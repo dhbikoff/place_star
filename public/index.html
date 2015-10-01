@@ -20,50 +20,54 @@
 
 <body>
   <h1>Place *</h1>
-  <h2>Create placeholder images based on search terms</h2>
-  <h3>Built With:</h3>
+
+  <h3>Create placeholder images based on search terms</h3>
+
+  <h4>Built With:</h4>
+
   <ul>
-    <li>Scala 2.11.7</li>
+    <li>Scala 2.11</li>
     <li>Play Framework 2.4.3</li>
     <li>Google Custom Search API</li>
     <li>Bing Search API</li>
-    <li>
-      <a href="https://github.com/sksamuel/scrimage">
-          Scrimage
-      </a> - Scala Image Processing Library
+    <li><a href="https://github.com/sksamuel/scrimage">Scrimage</a> - Scala image processing library</li>
+  </ul>
+
+  <h4>Live Site:</h4>
+
+  <ul>
+    <li>Hosted on <a href="https://guarded-reaches-5004.herokuapp.com">Heroku</a></li>
+    <li>Uses free API plans, so Google results are limited to 100/day and Bing results are limited to 5000/month</li>
+    <li>Rate limits are at the app level and not per user</li>
+  </ul>
+
+  <h4>Usage:</h4>
+
+  <ul>
+    <li>uses rest routing parameters</li>
+    <li>uses underscores to separate search terms</li>
+    <li>supports png, jpg, jpeg extension parameters (defaults to jpg)</li>
+    <li>request format
+      <code>http://localhost:9000/:searchProvider/:search/:width/:height/:ext(optional)</code>
     </li>
   </ul>
-  <h3>Live Site:</h3>
+
+  <h4>Examples:</h4>
+
   <ul>
     <li>
-      Hosted on
-      <a href="https://guarded-reaches-5004.herokuapp.com">
-            Heroku
-          </a>
+      <code>http://localhost:9000/google/corgi/400/600/png</code>
     </li>
     <li>
-      Uses free API plans, so Google results are limited to 100/day and Bing results are limited to 5000/month
+      <code>http://localhost:9000/bing/rottweiler/500/500/jpg</code>
     </li>
     <li>
-      Rate limits are at the app level and not per user
+      <code>http://localhost:9000/bing/corgi_rottweiler_mix/800/400</code>
     </li>
   </ul>
-  <h3>Usage:</h3>
-  <ul>
-    <li>Uses rest routing parameters</li>
-    <li>Request format:
-      <code>http://localhost:9000/:searchProvider/:search/:width/:height</code>
-    </li>
-    <li>
-      Example:
-      <code>http://localhost:9000/google/corgi/400/600</code>
-    </li>
-    <li>
-      Example:
-      <code>http://localhost:9000/bing/rottweiler/500/500</code>
-    </li>
-  </ul>
-  <h3>Notes:</h3>
+
+  <h4>Notes:</h4>
+
   <ul>
     <li>Picks a random image from the search results so you can refresh for a different image</li>
     <li>Results will be different from web searches due to API provider implementation</li>
